@@ -1,0 +1,83 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "products": "Products",
+    "how": "How We Work",
+    "contact": "Contact",
+    "selectLanguage": "Select language"
+  },
+  "footer": {
+    "tagline": "Global Sourcing. Trusted Supply.",
+    "blurb": "Connecting Global Buyers with Trusted Indian Suppliers.",
+    "productsHeading": "Products",
+    "feedIngredients": "Feed Ingredients",
+    "industrialMinerals": "Industrial Minerals",
+    "agroCommodities": "Agro Commodities",
+    "marketsHeading": "Markets",
+    "allMarkets": "All Markets",
+    "companyHeading": "Company",
+    "aboutUs": "About Us",
+    "howWeWork": "How We Work",
+    "contactHeading": "Contact",
+    "headquartered": "Headquartered in Gujarat, India",
+    "copyright": "© 2026 VP TRADELINK. All Rights Reserved.",
+    "disclaimer": "Information on this website is for trade reference only. Product descriptions, specifications, and process details are indicative and do not constitute a contractual offer. All transactions are subject to a separate written commercial agreement. VP TRADELINK acts as a sourcing intermediary.",
+    "governing": "Governing Law: India  |  Disputes: Arbitration, Gujarat, India",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfUse": "Terms of Use",
+    "disclaimerLink": "Disclaimer",
+    "exportTerms": "Export Terms",
+    "cookiePolicy": "Cookie Policy"
+  },
+  "common": {
+    "sendInquiry": "Send Inquiry",
+    "viewProducts": "View Products",
+    "learnMore": "Learn More",
+    "emailUs": "Email Us Directly",
+    "exploreProducts": "Explore Products",
+    "close": "Close",
+    "sendInquiryProduct": "Send Inquiry for This Product"
+  },
+  "home": {
+    "heroTitle": "Direct Sourcing from India. Quality. Speed. Pricing.",
+    "heroSubtitle": "We connect international buyers directly with verified Indian manufacturers. Fast responses. Transparent pricing. Quality verified against agreed specifications.",
+    "heroSubtext": "Serving importers, manufacturers, distributors and industrial buyers across Asia, the Middle East, Africa, Europe and other international markets.",
+    "quickFactsHeading": "Quick Facts",
+    "whyHeading": "Why Choose VP TRADELINK",
+    "capabilitiesHeading": "Our Capabilities",
+    "industriesHeading": "Industries We Serve",
+    "lookingHeading": "Looking for a Reliable Sourcing Partner?",
+    "lookingText": "Share your sourcing requirements with us, and we will respond with suitable product options and commercial details tailored to your business needs."
+  },
+  "about": {
+    "heroTitle": "About VP TRADELINK"
+  },
+  "products": {
+    "heroTitle": "Our Products",
+    "heroSubtitle": "Feed Ingredients, Industrial Minerals, and Agro Commodities — sourced from India and supplied to specification. MOQ: minimum 1 container."
+  },
+  "howwework": {
+    "heroTitle": "How We Work"
+  },
+  "contact": {
+    "heroTitle": "Get in Touch",
+    "heroSubtitle": "Send us your sourcing requirements, product inquiries, or any questions about our services. We'll respond promptly with detailed information.",
+    "formHeading": "Send Your Inquiry"
+  },
+  "markets": {
+    "heroTitle": "Markets We Serve"
+  },
+  "marketVietnam": {
+    "heroTitle": "Sourcing for Vietnam"
+  },
+  "marketIndonesia": {
+    "heroTitle": "Sourcing for Indonesia"
+  },
+  "marketChina": {
+    "heroTitle": "Sourcing for China"
+  },
+  "thankyou": {
+    "heroTitle": "Thank You"
+  }
+}
