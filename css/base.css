@@ -16,8 +16,8 @@ html {
 body {
   font-family: var(--font-main);
   line-height: 1.6;
-  color: var(--charcoal);
-  background-color: var(--white);
+  color: var(--silver);
+  background-color: var(--black);
 }
 
 img { max-width: 100%; display: block; }
@@ -28,7 +28,7 @@ img { max-width: 100%; display: block; }
   top: -40px;
   left: 0;
   background: var(--navy);
-  color: white;
+  color: black;
   padding: 8px 14px;
   text-decoration: none;
   z-index: 1100;
