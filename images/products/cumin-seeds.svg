@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Cumin Seeds placeholder image">
-<rect width="200" height="200" fill="#FBF3E3"/>
-<path d="M70 70 Q70 50 100 50 Q130 50 130 70 L138 160 Q138 172 126 172 L74 172 Q62 172 62 160 Z" fill="#D4A017" opacity="0.9"/>
-<path d="M70 70 Q70 50 100 50 Q130 50 130 70 L138 160 Q138 172 126 172 L74 172 Q62 172 62 160 Z" fill="none" stroke="#8a5a00" stroke-width="3"/>
-<line x1="76" y1="95" x2="124" y2="95" stroke="#8a5a00" stroke-width="2" opacity="0.4"/>
-<text x="100" y="190" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#8a5a00" text-anchor="middle" opacity="0.55">PLACEHOLDER</text>
-</svg>
