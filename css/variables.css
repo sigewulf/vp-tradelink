@@ -1,0 +1,45 @@
+/* ============================================================
+   VP TRADELINK — Design Tokens 2026
+   Single source of truth. Edit here, nothing else changes.
+   ============================================================ */
+:root {
+  /* ── Brand ────────────────────────────────────────────────── */
+  --navy:          #0A1D3D;
+  --navy-mid:      #122448;
+  --navy-deep:     #070F20;
+  --gold:          #C8932A;
+  --gold-light:    #E4B96A;
+  --gold-subtle:   rgba(200,147,42,0.12);
+  --green:         #157A3B;
+  --green-mid:     #1A9347;
+
+  /* ── Neutrals ─────────────────────────────────────────────── */
+  --white:         #FFFFFF;
+  --off-white:     #F8F7F4;
+  --grey-50:       #F2F4F7;
+  --grey-100:      #E8ECF1;
+  --grey-200:      #D0D7E2;
+  --grey-400:      #8E99AA;
+  --grey-600:      #54626F;
+  --ink:           #1A2332;
+
+  /* ── Typography ───────────────────────────────────────────── */
+  --font:          'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* ── Sizing ───────────────────────────────────────────────── */
+  --max:           1200px;
+  --radius-sm:     4px;
+  --radius:        8px;
+  --radius-lg:     14px;
+
+  /* ── Shadows ──────────────────────────────────────────────── */
+  --shadow-xs:     0 1px 3px rgba(10,29,61,0.06);
+  --shadow-sm:     0 2px 8px rgba(10,29,61,0.08);
+  --shadow-md:     0 4px 20px rgba(10,29,61,0.10);
+  --shadow-lg:     0 12px 40px rgba(10,29,61,0.13);
+
+  /* ── Transitions ──────────────────────────────────────────── */
+  --ease:          cubic-bezier(0.22,1,0.36,1);
+  --t-fast:        0.18s;
+  --t-mid:         0.32s;
+}
