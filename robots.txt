@@ -1,0 +1,25 @@
+# VP TRADELINK — robots.txt
+# https://vptradelink.com
+
+# ── All crawlers ─────────────────────────────────────────────
+User-agent: *
+Allow: /
+
+# Block internal utility files crawlers don't need
+Disallow: /thank-you.html
+Disallow: /lang/
+Disallow: /images/logo/
+
+# ── Google ───────────────────────────────────────────────────
+User-agent: Googlebot
+Allow: /
+Disallow: /thank-you.html
+
+# ── Google Image Bot — allow product images ──────────────────
+User-agent: Googlebot-Image
+Allow: /images/products/
+Allow: /images/hero/
+Disallow: /images/logo/
+
+# ── Sitemap ──────────────────────────────────────────────────
+Sitemap: https://vptradelink.com/sitemap.xml

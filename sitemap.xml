@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- ── HOMEPAGE ─────────────────────────────────────────────── -->
+  <url>
+    <loc>https://vptradelink.com/</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <!-- NOTE: hreflang alternates were removed here. All 5 languages currently
+       render on this SAME url via client-side JS (js/i18n.js) — there are no
+       distinct per-language URLs for Google to point to. Declaring hreflang
+       alternates that all resolve to one URL is invalid and surfaces as an
+       error in Search Console. Do not re-add until real per-language URLs
+       (e.g. /vi/, /id/) exist with translated content baked into the HTML. -->
+
+  <!-- ── CORE PAGES ────────────────────────────────────────────── -->
+  <url>
+    <loc>https://vptradelink.com/products.html</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <url>
+    <loc>https://vptradelink.com/contact.html</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <url>
+    <loc>https://vptradelink.com/about.html</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://vptradelink.com/how-we-work.html</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- ── MARKETS HUB ───────────────────────────────────────────── -->
+  <url>
+    <loc>https://vptradelink.com/markets.html</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- ── MARKET PAGES ──────────────────────────────────────────── -->
+  <!-- UAE — highest priority, re-export hub, multi-product -->
+  <url>
+    <loc>https://vptradelink.com/market-uae.html</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- Bangladesh — rapeseed meal primary, high volume near-term -->
+  <url>
+    <loc>https://vptradelink.com/market-bangladesh.html</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- Vietnam — active target market, rapeseed meal & minerals -->
+  <url>
+    <loc>https://vptradelink.com/market-vietnam.html</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Indonesia — feed & minerals -->
+  <url>
+    <loc>https://vptradelink.com/market-indonesia.html</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- China — minerals & agro -->
+  <url>
+    <loc>https://vptradelink.com/market-china.html</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- South Africa — minerals, Mundra-Durban route -->
+  <url>
+    <loc>https://vptradelink.com/market-south-africa.html</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- ── LEGAL PAGES ───────────────────────────────────────────── -->
+  <url>
+    <loc>https://vptradelink.com/privacy-policy.html</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.20</priority>
+  </url>
+
+  <url>
+    <loc>https://vptradelink.com/terms.html</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.20</priority>
+  </url>
+
+  <url>
+    <loc>https://vptradelink.com/disclaimer.html</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.20</priority>
+  </url>
+
+  <url>
+    <loc>https://vptradelink.com/export-terms.html</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.20</priority>
+  </url>
+
+  <url>
+    <loc>https://vptradelink.com/cookie-policy.html</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.20</priority>
+  </url>
+
+</urlset>
