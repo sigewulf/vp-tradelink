@@ -1,0 +1,817 @@
+/* ============================================================
+   VP TRADELINK — DESIGN SYSTEM v2.0 (FRESH BUILD)
+   One color system. One typography. One spacing scale.
+   One button system. One table system. No exceptions.
+   ============================================================ */
+
+:root {
+  color-scheme: light dark;
+
+  /* Color — locked, no bright/saturated colors anywhere */
+  --ink: #14202B;
+  --ink-soft: #44515C;
+  --paper: #FBF9F5;
+  --paper-raised: #FFFFFF;
+  --line: #DAD4C6;
+  --line-soft: #EAE6DB;
+  --line-strong: #B8AF9A;
+  --brass: #8A6D3B;
+  --brass-dark: #6B5329;
+  --steel: #35516B;
+  --tint-feed: #F5EFE1;      /* warm wheat, derived from brass */
+  --tint-minerals: #EDF1F3;  /* cool grey, derived from steel */
+  --tint-agri: #EFF2E8;      /* muted sage, new but equally desaturated */
+  --accent-agri: #5C6B45;    /* muted moss — third category accent, same saturation ceiling as brass/steel */
+  --error: #A13D2D;          /* muted rust — same saturation ceiling as the rest of the palette */
+
+  /* Type — one scale, used everywhere */
+  --font-display: "Source Serif 4", Georgia, serif;
+  --font-body: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", "SF Mono", Consolas, monospace;
+
+  /* Base body floor raised to 16px minimum (was 15.2px); spec numbers get
+     their own larger token below (--step-0-num) since that's the content
+     buyers linger on longest. */
+  --step-0: clamp(1rem, 0.97rem + 0.15vw, 1.05rem);
+  --step-0-num: clamp(1.0625rem, 1rem + 0.3vw, 1.125rem); /* ~17–18px for spec-table numbers */
+  --step-1: clamp(1.1rem, 1rem + 0.4vw, 1.25rem);
+  --step-2: clamp(1.4rem, 1.2rem + 0.8vw, 1.75rem);
+  --step-3: clamp(1.9rem, 1.5rem + 1.6vw, 2.6rem);
+  --step-4: clamp(2.2rem, 1.7rem + 2.2vw, 3.2rem);
+
+  /* Micro-type — labels/notes below --step-0, consolidated to 3 named tokens.
+     Raised so nothing on the site sits below ~13px; uppercase treatment is
+     measurably harder to read than mixed case, so size compensates. */
+  --label-sm: 0.82rem;  /* ~13.1px */
+  --label-md: 0.875rem; /* ~14px */
+  --note: 0.9rem;       /* ~14.4px */
+
+  /* Spacing — 8px system, locked */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 40px;
+  --space-5: 64px;
+  --space-6: 96px;
+
+  --radius: 2px;
+  --max: 1280px; /* within locked 1200-1320px desktop range */
+}
+
+/* Explicit overrides for the manual theme-toggle button in the header.
+   Higher specificity than the bare :root inside the media query above, so
+   these always win once the visitor picks a side — independent of what
+   their OS is set to. No attribute = follow system preference as before. */
+:root[data-theme="dark"] {
+  --ink: #EDE9E0; --ink-soft: #B9C2CA; --paper: #14191F; --paper-raised: #1B222A;
+  --line: #333C44; --line-soft: #262E36; --line-strong: #4A545D;
+  --brass: #C9A468; --brass-dark: #E0BD85; --steel: #8FB0C9;
+  --tint-feed: #241F17; --tint-minerals: #182126; --tint-agri: #1B2018;
+  --accent-agri: #9CB27E; --error: #E0897A;
+}
+:root[data-theme="dark"] .cat-card--photo::before {
+  background: linear-gradient(180deg, rgba(10,14,18,0.45) 0%, rgba(10,14,18,0.65) 45%, rgba(10,14,18,0.94) 100%);
+}
+:root[data-theme="dark"] .hero--photo::after {
+  background: linear-gradient(90deg, rgba(10,14,18,0.92) 0%, rgba(10,14,18,0.80) 40%, rgba(10,14,18,0.46) 75%, rgba(10,14,18,0.22) 100%);
+}
+:root[data-theme="dark"].home-page .hero--photo::after {
+  background: linear-gradient(90deg, rgba(10,14,18,0.86) 0%, rgba(10,14,18,0.72) 42%, rgba(10,14,18,0.38) 76%, rgba(10,14,18,0.18) 100%);
+}
+:root[data-theme="light"] {
+  --ink: #14202B; --ink-soft: #44515C; --paper: #FBF9F5; --paper-raised: #FFFFFF;
+  --line: #DAD4C6; --line-soft: #EAE6DB; --line-strong: #B8AF9A;
+  --brass: #8A6D3B; --brass-dark: #6B5329; --steel: #35516B;
+  --tint-feed: #F5EFE1; --tint-minerals: #EDF1F3; --tint-agri: #EFF2E8;
+  --accent-agri: #5C6B45; --error: #A13D2D;
+}
+
+/* ---------- Theme toggle button (header, next to the language switch) ---------- */
+.theme-toggle {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 38px; height: 38px; border: 1px solid var(--line); border-radius: var(--radius);
+  background: none; color: var(--ink-soft); cursor: pointer; flex-shrink: 0;
+}
+.theme-toggle:hover { border-color: var(--ink); color: var(--ink); }
+.theme-toggle svg { width: 18px; height: 18px; display: none; }
+.theme-toggle .theme-toggle__sun { display: block; }
+:root[data-theme="dark"] .theme-toggle .theme-toggle__sun { display: none; }
+:root[data-theme="dark"] .theme-toggle .theme-toggle__moon { display: block; }
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme="light"]) .theme-toggle .theme-toggle__sun { display: none; }
+  html:not([data-theme="light"]) .theme-toggle .theme-toggle__moon { display: block; }
+}
+/* ---------- Dark mode via system preference — a real variant, not just
+   "stop forcing light". International buyers check supplier sites at odd
+   hours across time zones; overriding their system dark-mode preference
+   removed the single biggest eye-comfort lever available. Same hues,
+   inverted luminance, same contrast discipline as the light palette (body
+   text still exceeds WCAG AAA). Skipped when the visitor has explicitly
+   picked a side via the theme-toggle button (data-theme set above). */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --ink: #EDE9E0;
+    --ink-soft: #B9C2CA;
+    --paper: #14191F;
+    --paper-raised: #1B222A;
+    --line: #333C44;
+    --line-soft: #262E36;
+    --line-strong: #4A545D;
+    --brass: #C9A468;
+    --brass-dark: #E0BD85;
+    --steel: #8FB0C9;
+    --tint-feed: #241F17;
+    --tint-minerals: #182126;
+    --tint-agri: #1B2018;
+    --accent-agri: #9CB27E;
+    --error: #E0897A;
+  }
+  .cat-card--photo::before {
+    background: linear-gradient(180deg, rgba(10,14,18,0.45) 0%, rgba(10,14,18,0.65) 45%, rgba(10,14,18,0.94) 100%);
+  }
+  .hero--photo::after {
+    background: linear-gradient(90deg, rgba(10,14,18,0.92) 0%, rgba(10,14,18,0.80) 40%, rgba(10,14,18,0.46) 75%, rgba(10,14,18,0.22) 100%);
+  }
+  .home-page .hero--photo::after {
+    background: linear-gradient(90deg, rgba(10,14,18,0.86) 0%, rgba(10,14,18,0.72) 42%, rgba(10,14,18,0.38) 76%, rgba(10,14,18,0.18) 100%);
+  }
+}
+
+/* ---------- Skip link — hidden until keyboard focus ---------- */
+.skip-link {
+  position: absolute;
+  top: -48px;
+  left: var(--space-2);
+  z-index: 100;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0.75em 1.2em;
+  border-radius: var(--radius);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: top 160ms ease;
+}
+.skip-link:focus {
+  top: var(--space-2);
+}
+
+/* ---------- Reset ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { overflow-x: hidden; }
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+main { background: var(--paper); }
+section { background: var(--paper); }
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+ul { margin: 0; padding: 0; list-style: none; }
+h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; margin: 0; }
+p { margin: 0; }
+table { border-collapse: collapse; width: 100%; }
+:focus-visible { outline: 2px solid var(--brass); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+/* ---------- Layout — max 1200-1320px, generous whitespace ---------- */
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--space-3); }
+.section { padding: var(--space-5) 0; background: var(--paper); }
+.section--tight { padding: var(--space-4) 0; background: var(--paper); }
+.section--line { border-top: 1px solid var(--line); }
+
+.site-header { position: sticky; top: 0; z-index: 50; background: var(--paper); border-bottom: 1px solid var(--line); }
+.site-header .wrap { display: flex; align-items: center; justify-content: space-between; padding-block: var(--space-2); gap: var(--space-3); }
+.logo { font-family: var(--font-display); font-size: var(--step-1); font-weight: 600; display: flex; align-items: center; gap: 12px; color: var(--brass); }
+.logo-icon {
+  display: block;
+  flex-shrink: 0;
+  width: 40px;
+  height: 30px;
+  background-color: var(--brass);
+  -webkit-mask-image: url("../images/brand/vp-tradelink-mark.png");
+  mask-image: url("../images/brand/vp-tradelink-mark.png");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  transition: background-color 0.2s ease;
+}
+.logo small { display: block; font-family: var(--font-mono); font-size: 0.62rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); margin-top: 2px; }
+.nav { display: flex; gap: var(--space-3); align-items: center; }
+.nav a { font-size: 0.9rem; color: var(--ink-soft); border-bottom: 1px solid transparent; padding-bottom: 2px; }
+.nav a:hover, .nav a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--brass); }
+
+/* Tablet gap — between the hamburger breakpoint (760px) and the 2-col layout
+   breakpoint (1024px), the full desktop header (logo + tagline + full nav +
+   CTA) has no shrink/wrap fallback. Trim the tagline and add a flex-wrap
+   safety net so a genuine overflow degrades to two rows instead of clipping. */
+@media (min-width: 761px) and (max-width: 900px) {
+  .logo small { display: none; }
+  .site-header .wrap { flex-wrap: wrap; }
+  .nav { flex-wrap: wrap; }
+}
+
+@media (max-width: 1024px) {
+  .cat-grid { grid-template-columns: repeat(2, 1fr); }
+  .fact-grid { grid-template-columns: repeat(2, 1fr); }
+  .quick-facts { grid-template-columns: repeat(2, 1fr); }
+  .quick-facts > div:nth-child(3) { border-left: none; }
+  .footer-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 760px) {
+  .nav-toggle { display: inline-flex; }
+  .nav { position: fixed; top: 0; right: 0; bottom: 0; width: min(78vw, 320px);
+         background: var(--paper); border-left: 1px solid var(--line);
+         flex-direction: column; align-items: flex-start; gap: 0;
+         padding: 72px var(--space-3) var(--space-3);
+         transform: translateX(100%); transition: transform 220ms ease;
+         z-index: 60; }
+  .nav.is-open { transform: translateX(0); box-shadow: -8px 0 24px rgba(20,32,43,0.12); }
+  .nav a:not(.btn) { display: block; width: 100%; padding: 0.9em 0; border-bottom: 1px solid var(--line-soft); }
+  .nav .btn { margin-top: var(--space-2); width: 100%; justify-content: center; }
+  .nav-scrim { display: none; position: fixed; inset: 0; background: rgba(20,32,43,0.4); z-index: 55; }
+  .nav-scrim.is-open { display: block; }
+  body.nav-open { overflow: hidden; }
+  body.nav-open .btn-sticky-mobile { display: none; }
+}
+
+/* ---------- Hamburger toggle button — hidden on desktop, one shared button system ---------- */
+.nav-toggle {
+  display: none; align-items: center; justify-content: center;
+  width: 44px; height: 44px; border: 1px solid var(--line); border-radius: var(--radius);
+  background: none; cursor: pointer; flex-direction: column; gap: 4px; z-index: 65; position: relative;
+}
+.nav-toggle span { display: block; width: 20px; height: 2px; background: var(--ink); transition: transform 160ms ease, opacity 160ms ease; }
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+/* ---------- ONE BUTTON SYSTEM — primary + ghost, nothing else ---------- */
+.btn { display: inline-flex; align-items: center; gap: 0.5em; padding: 0.75em 1.4em; font-family: var(--font-body); font-size: 0.9rem; font-weight: 600; border: 1px solid var(--ink); border-radius: var(--radius); cursor: pointer; background: none; min-height: 44px; }
+.btn--primary { background: var(--ink); color: var(--paper); }
+.btn--primary:hover { background: var(--brass-dark); border-color: var(--brass-dark); }
+.btn--ghost { background: transparent; color: var(--ink); border-color: var(--line-strong); }
+.btn--ghost:hover { border-color: var(--ink); }
+.btn-row { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+.btn-sticky-mobile { display: none; }
+@media (max-width: 760px) {
+  .btn-sticky-mobile { display: flex; position: fixed; bottom: 0; left: 0; right: 0; z-index: 60; background: var(--paper); border-top: 1px solid var(--line); padding: var(--space-2); gap: var(--space-2); }
+  .btn-sticky-mobile .btn { flex: 1; justify-content: center; }
+  body.has-sticky-cta main { padding-bottom: 80px; }
+}
+
+/* ---------- Hero ---------- */
+.hero { padding: var(--space-5) 0 var(--space-4); border-bottom: 1px solid var(--line); background: var(--paper); }
+.hero .eyebrow { font-family: var(--font-mono); font-size: var(--label-md); letter-spacing: 0.14em; text-transform: uppercase; color: var(--brass-dark); margin-bottom: var(--space-2); }
+.hero h1 { font-size: var(--step-4); line-height: 1.05; max-width: 16ch; margin-bottom: var(--space-3); }
+.hero p.lede { font-size: var(--step-1); color: var(--ink-soft); max-width: 52ch; margin-bottom: var(--space-3); }
+
+/* ---------- Hero photo variant — desktop/tablet/mobile art-directed via <picture>, dark scrim baked in via CSS so text stays legible on any photo ---------- */
+.hero--photo { position: relative; overflow: hidden; border-bottom: none; padding: var(--space-6, 96px) 0 var(--space-5); }
+.hero__media { position: absolute; inset: 0; z-index: 0; }
+.hero__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hero--photo::after {
+  content: ""; position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(90deg, rgba(20,32,43,0.90) 0%, rgba(20,32,43,0.78) 40%, rgba(20,32,43,0.42) 75%, rgba(20,32,43,0.20) 100%);
+}
+.hero--photo .wrap { position: relative; z-index: 2; }
+.hero--photo .eyebrow { color: var(--brass); }
+.hero--photo h1 { color: var(--paper); }
+.hero--photo p.lede { color: rgba(251,249,245,0.82); }
+.hero--photo .btn--ghost { color: var(--paper); border-color: rgba(251,249,245,0.45); }
+.hero--photo .btn--ghost:hover { border-color: var(--paper); background: rgba(251,249,245,0.08); }
+.hero--photo .btn--primary { background: var(--brass); color: var(--paper); }
+.hero--photo .btn--primary:hover { background: var(--paper); color: var(--ink); }
+@media (max-width: 760px) { .hero--photo { padding: var(--space-5) 0 var(--space-4); } }
+
+
+/* ---------- Homepage visual blending ----------
+   Homepage-only refinement: preserves the global design system while making
+   the photo hero transition more naturally into the same paper/line system
+   used throughout the rest of the site. */
+.home-page .hero--photo {
+  border-bottom: 1px solid var(--line);
+  background: var(--paper);
+}
+.home-page .hero--photo::after {
+  background: linear-gradient(
+    90deg,
+    rgba(20, 32, 43, 0.84) 0%,
+    rgba(20, 32, 43, 0.70) 42%,
+    rgba(20, 32, 43, 0.36) 76%,
+    rgba(20, 32, 43, 0.16) 100%
+  );
+}
+.home-page .section {
+  background: linear-gradient(
+    180deg,
+    var(--paper) 0%,
+    var(--paper-raised) 100%
+  );
+}
+.home-page .section--line {
+  border-top-color: var(--line-soft);
+}
+
+/* ---------- Category cards ---------- */
+.cat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.cat-card { background: var(--paper-raised); padding: var(--space-4); display: flex; flex-direction: column; min-height: 260px; }
+.cat-card .num { font-family: var(--font-mono); font-size: 0.75rem; color: var(--brass-dark); margin-bottom: var(--space-2); }
+.cat-card h3 { font-size: var(--step-2); margin-bottom: var(--space-2); }
+.cat-card ul { margin-top: auto; padding-top: var(--space-3); }
+.cat-card li { font-size: 0.88rem; padding: 6px 0; border-top: 1px solid var(--line-soft); display: flex; justify-content: space-between; }
+.cat-card li:first-child { border-top: none; }
+@media (max-width: 760px) { .cat-grid { grid-template-columns: 1fr; } }
+
+/* ---------- Section heading ---------- */
+.section-head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-3); margin-bottom: var(--space-4); }
+.section-head h2 { font-size: var(--step-3); }
+.section-head .eyebrow { font-family: var(--font-mono); font-size: var(--label-md); letter-spacing: 0.14em; text-transform: uppercase; color: var(--brass-dark); display: block; margin-bottom: var(--space-1); }
+
+/* ---------- Quick Facts strip (locked block on every product page) ----------
+   6 fields: Origin, Product Type, Available Forms, Incoterms, MOQ, Lead Time.
+   MOQ/lead time answer the first qualifying question a buyer has ("can I
+   actually order this, how fast") before spec/packaging details. */
+.quick-facts { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--line); }
+.quick-facts--hero { margin-top: var(--space-3); background: var(--paper); }
+.quick-facts dt { font-family: var(--font-mono); font-size: var(--label-sm); text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-soft); }
+.quick-facts dd { margin: 6px 0 0; font-size: 0.95rem; font-weight: 600; }
+.quick-facts > div { padding: var(--space-3); border-left: 1px solid var(--line); border-top: 1px solid var(--line); }
+.quick-facts > div:nth-child(3n+1) { border-left: none; }
+.quick-facts > div:nth-child(-n+3) { border-top: none; }
+@media (max-width: 760px) {
+  .quick-facts { grid-template-columns: repeat(2, 1fr); }
+  .quick-facts > div:nth-child(3n+1) { border-left: 1px solid var(--line); }
+  .quick-facts > div:nth-child(2n+1) { border-left: none; }
+  .quick-facts > div:nth-child(-n+2) { border-top: none; }
+}
+
+/* ---------- Fact grid (Company/Export Capabilities) ---------- */
+.fact-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-3); background: var(--paper); }
+.fact { border-top: 2px solid var(--ink); padding-top: var(--space-2); background: var(--paper); }
+.fact .label { font-family: var(--font-mono); font-size: var(--label-md); color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+.fact .value { font-family: var(--font-display); font-size: var(--step-2); }
+.fact .value--compact { font-size: var(--step-1); }
+.fact--emphasis .value { font-size: var(--step-2); }
+.fact .sub { font-size: 0.85rem; color: var(--ink-soft); margin-top: 4px; }
+@media (max-width: 760px) { .fact-grid { grid-template-columns: repeat(2, 1fr); } }
+
+/* ---------- ONE TABLE SYSTEM — identical styling everywhere ---------- */
+.spec-table, .compare-table { font-size: 0.92rem; }
+.spec-table th, .spec-table td, .compare-table th, .compare-table td { text-align: left; padding: 0.7em 1em; border-bottom: 1px solid var(--line); }
+.spec-table thead th, .compare-table thead th { font-family: var(--font-mono); font-size: var(--label-md); text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-soft); font-weight: 500; border-bottom: 2px solid var(--ink); }
+.spec-table td.num, .spec-table th.num, .compare-table td.num { font-family: var(--font-mono); text-align: right; font-size: var(--step-0-num); }
+.spec-note { font-size: var(--note); color: var(--ink-soft); margin-top: var(--space-2); padding-left: 1em; border-left: 2px solid var(--line); }
+.compare-table th, .compare-table td { border-left: 1px solid var(--line); }
+.compare-table th:first-child, .compare-table td:first-child { border-left: none; }
+.compare-table th.param-col { color: var(--ink); font-weight: 600; font-family: var(--font-body); background: none; }
+.compare-table thead th .hs-code { display: block; font-weight: 400; font-size: var(--label-sm); margin-top: 3px; color: var(--ink-soft); }
+@media (max-width: 760px) {
+  .compare-table-wrap {
+    overflow-x: auto; -webkit-overflow-scrolling: touch;
+    position: relative;
+    -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent 100%);
+    mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent 100%);
+  }
+  .compare-table-wrap.is-scrolled-end { -webkit-mask-image: none; mask-image: none; }
+}
+
+/* ---------- Pipe list ---------- */
+.pipe-list { font-size: 0.95rem; }
+.pipe-list .sep { color: var(--line); margin: 0 0.6em; }
+
+/* ---------- Industry / Applications strip ---------- */
+.industry-fit { display: flex; flex-wrap: wrap; gap: 0; border: 1px solid var(--line); background: var(--paper); }
+.industry-fit span { display: flex; align-items: center; gap: 0.55em; padding: 0.6em 1em; font-size: 0.88rem; border-left: 1px solid var(--line); background: var(--paper); }
+.industry-fit span:first-child { border-left: none; }
+.industry-fit .icon { width: 16px; height: 16px; color: var(--brass-dark); flex-shrink: 0; }
+
+/* ---------- Product hero meta ---------- */
+.product-id .hs-code { font-family: var(--font-mono); font-size: 0.85rem; color: var(--ink-soft); margin-top: 4px; }
+.meta-row { display: grid; grid-template-columns: max-content 1fr; gap: var(--space-1) var(--space-3); margin-top: var(--space-3); font-size: 0.9rem; }
+.meta-row dt { font-family: var(--font-mono); font-size: var(--label-sm); text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-soft); align-self: start; padding-top: 3px; }
+.meta-row dd { margin: 0; }
+
+/* ---------- Product image ---------- */
+.product-image { border: 1px solid var(--line); aspect-ratio: 4/3; overflow: hidden; background: var(--paper-raised); }
+.product-image img { width: 100%; height: 100%; object-fit: cover; }
+:root[data-theme="dark"] .product-image img,
+:root[data-theme="dark"] .cat-card--photo,
+:root[data-theme="dark"] .row-link .thumb {
+  filter: brightness(0.92) contrast(1.04);
+}
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme="light"]) .product-image img,
+  html:not([data-theme="light"]) .cat-card--photo,
+  html:not([data-theme="light"]) .row-link .thumb {
+    filter: brightness(0.92) contrast(1.04);
+  }
+}
+
+/* ---------- Two-column product layout (dense, one-screen desktop) ---------- */
+.product-layout { display: grid; grid-template-columns: 1.15fr 1fr; gap: var(--space-4); align-items: start; }
+.product-layout .col { display: flex; flex-direction: column; gap: var(--space-3); }
+.mini-block h2 { font-family: var(--font-mono); font-size: var(--label-sm); text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-soft); margin-bottom: 6px; }
+.mini-block__note { font-size: var(--note); margin-top: 6px; }
+@media (max-width: 1024px) {
+  .product-layout { grid-template-columns: 1fr; }
+}
+
+/* ---------- Product hero photo ---------- */
+.product-layout--hero { align-items: center; }
+.product-layout--hero .product-image { border-radius: 2px; box-shadow: var(--shadow); }
+@media (max-width: 1024px) {
+  .product-layout--hero { gap: var(--space-3); }
+  .product-layout--hero .product-image { order: -1; max-width: 480px; margin: 0 auto; }
+}
+
+/* ---------- Footer ---------- */
+.site-footer { border-top: 1px solid var(--line); padding: var(--space-5) 0 var(--space-4); font-size: 0.85rem; color: var(--ink-soft); }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: var(--space-3); padding-bottom: var(--space-4); border-bottom: 1px solid var(--line); margin-bottom: var(--space-3); }
+.footer-grid h4 { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink); margin-bottom: var(--space-2); }
+.footer-grid li { margin-bottom: 6px; }
+.footer-bottom { display: flex; justify-content: space-between; flex-wrap: wrap; gap: var(--space-2); }
+@media (max-width: 760px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+
+/* ---------- Form ---------- */
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+.form-field { display: flex; flex-direction: column; gap: 6px; }
+.form-field label { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-soft); }
+.form-field input, .form-field select, .form-field textarea { font-family: var(--font-body); font-size: 0.95rem; padding: 0.7em 0.9em; border: 1px solid var(--line-strong); border-radius: var(--radius); background: var(--paper-raised); color: var(--ink); min-height: 44px; }
+.form-field textarea { min-height: 120px; resize: vertical; }
+.form-field.full { grid-column: 1 / -1; }
+.form-field:has(:required) label::after { content: " *"; color: var(--error); }
+.form-field--invalid input, .form-field--invalid select, .form-field--invalid textarea { border-color: var(--error); }
+.form-field__error { display: none; color: var(--error); font-size: var(--note); margin-top: 2px; }
+.form-field--invalid .form-field__error { display: block; }
+@media (max-width: 760px) { .form-grid { grid-template-columns: 1fr; } }
+
+/* ---------- Utility ---------- */
+.mono { font-family: var(--font-mono); }
+.text-soft { color: var(--ink-soft); }
+
+/* ---------- Print ---------- */
+@media print {
+  .site-header, .site-footer, .btn-row, .nav, .btn-sticky-mobile { display: none !important; }
+  body { background: #fff; color: #000; }
+  .section { padding: 1em 0; }
+  .quick-facts, .compare-table, .spec-table { border-color: #000; }
+}
+
+/* ============================================================
+   ADDITIVE UPGRADES — same tokens, applied everywhere, no exceptions
+   1. Motion  2. Elevation  3. Table zebra  4. Image placeholder
+   5. Icon system  6. Breadcrumbs  7. Language switcher
+   ============================================================ */
+
+/* ---------- 1. Motion — one easing curve, used everywhere ---------- */
+:root { --ease: 160ms ease; }
+.btn, .nav a, .cat-card, .compare-table tbody tr, .product-image img,
+.fact, .industry-fit span, .form-field input, .form-field select, .form-field textarea {
+  transition: background-color var(--ease), border-color var(--ease),
+              transform var(--ease), box-shadow var(--ease), color var(--ease);
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn, .nav a, .cat-card, .compare-table tbody tr, .product-image img,
+  .fact, .industry-fit span, .form-field input, .form-field select, .form-field textarea {
+    transition: none;
+  }
+}
+
+/* ---------- 2. Elevation — one shadow token, hover-only ---------- */
+:root { --shadow: 0 4px 16px rgba(20,32,43,0.08); }
+.cat-card { transform: translateY(0); }
+.cat-card:hover { transform: translateY(-2px); border-color: var(--brass); box-shadow: var(--shadow); position: relative; z-index: 1; }
+.product-image:hover img { transform: scale(1.03); }
+.form-field input:focus, .form-field select:focus, .form-field textarea:focus {
+  border-color: var(--brass); box-shadow: var(--shadow); outline: 2px solid var(--brass); outline-offset: 1px;
+}
+
+/* ---------- 3. Table zebra — applied to every compare/spec table ---------- */
+.compare-table tbody tr:nth-child(even),
+.spec-table tbody tr:nth-child(even) { background: var(--line-soft); }
+.compare-table tbody tr:hover,
+.spec-table tbody tr:hover { background: var(--line-soft); }
+.row-link { color: var(--ink); border-bottom: 1px solid transparent; font-weight: 500; }
+.row-link:hover { color: var(--brass-dark); border-bottom-color: var(--brass); }
+.compare-table tbody tr:hover .row-link { color: var(--brass-dark); }
+
+/* ---------- Product listing thumbnails ---------- */
+.row-link { display: inline-flex; align-items: center; gap: 0.85em; }
+.row-link .thumb { width: 40px; height: 40px; border-radius: 2px; object-fit: cover; border: 1px solid var(--line); flex-shrink: 0; background: var(--paper-raised); }
+
+/* ---------- Sibling category strip — same-category products, always reachable from any product page ---------- */
+.sibling-nav { background: var(--paper-raised); border-bottom: 1px solid var(--line); }
+.sibling-nav .wrap { display: flex; align-items: center; gap: var(--space-2); padding-block: 10px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.sibling-nav__label { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); white-space: nowrap; flex-shrink: 0; padding-right: var(--space-2); border-right: 1px solid var(--line); }
+.sibling-nav a { font-size: var(--note); white-space: nowrap; color: var(--ink-soft); border-bottom: 1px solid transparent; flex-shrink: 0; }
+.sibling-nav a:hover { color: var(--ink); border-bottom-color: var(--brass); }
+.sibling-nav a[aria-current="page"] { color: var(--brass-dark); font-weight: 600; border-bottom-color: var(--brass-dark); }
+
+/* ============================================================
+   MEGA-MENU — full category tree reachable from the header nav
+   on every page, no return trip to products.html required.
+   ============================================================ */
+.nav-dropdown { position: relative; }
+.nav-dropdown__trigger { display: inline-flex; align-items: center; gap: 4px; }
+.nav-dropdown__trigger .caret { width: 10px; height: 10px; transition: transform 160ms ease; }
+.nav-dropdown__panel {
+  display: none;
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--brass);
+  box-shadow: 0 12px 28px rgba(20,32,43,0.14);
+  padding: var(--space-3);
+  gap: var(--space-4);
+}
+.nav-dropdown__col { min-width: 180px; }
+.nav-dropdown__heading {
+  display: block; font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--brass-dark); margin-bottom: 10px; padding-bottom: 6px;
+  border-bottom: 1px solid var(--line);
+}
+.nav-dropdown__col a { display: block; padding: 5px 0; font-size: 0.88rem; color: var(--ink); border-bottom: 1px solid transparent; }
+.nav-dropdown__col a:hover { color: var(--brass-dark); border-bottom-color: var(--brass); }
+
+@media (min-width: 761px) {
+  .nav-dropdown__panel {
+    position: absolute; top: 100%; left: 50%;
+    transform: translateX(-50%);
+    flex-direction: row; z-index: 70;
+    width: max-content; max-width: calc(100vw - 2 * var(--space-3));
+    margin-top: 0;
+  }
+  /* Invisible hover bridge — kept as extra insurance, though removing the
+     margin-top gap above is what actually fixes the "menu closes before
+     I reach it" bug: :hover was being lost in that gap, before the
+     pointer ever reached this bridge. */
+  .nav-dropdown__panel::before {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; top: -14px; height: 14px;
+  }
+  .nav-dropdown:hover .nav-dropdown__panel,
+  .nav-dropdown:focus-within .nav-dropdown__panel { display: flex; }
+  .nav-dropdown:hover .nav-dropdown__trigger .caret,
+  .nav-dropdown:focus-within .nav-dropdown__trigger .caret { transform: rotate(180deg); }
+}
+
+@media (max-width: 760px) {
+  .nav-dropdown { width: 100%; }
+  .nav-dropdown__panel {
+    position: static; flex-direction: column; border: none; box-shadow: none;
+    padding: 10px 0 6px 14px; gap: var(--space-2); background: none;
+  }
+  .nav-dropdown.is-open .nav-dropdown__panel { display: flex; }
+  .nav-dropdown.is-open .nav-dropdown__trigger .caret { transform: rotate(180deg); }
+  .nav-dropdown__col { min-width: 0; }
+  .nav-dropdown__trigger { width: 100%; justify-content: space-between; }
+}
+
+/* ---------- 4. Image placeholder — consistent "coming soon" state ---------- */
+.product-image {
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+}
+.product-image:empty,
+.product-image.is-placeholder {
+  background: repeating-linear-gradient(135deg, var(--line-soft) 0 2px, var(--paper-raised) 2px 12px);
+  border: 1px dashed var(--brass);
+}
+.product-image.is-placeholder::after {
+  content: "Image pending";
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brass-dark);
+  background: var(--paper);
+  padding: 4px 10px;
+  border: 1px solid var(--line);
+}
+
+/* ---------- 5. Icon system — 18px, single stroke, currentColor ---------- */
+.icon {
+  width: 18px; height: 18px;
+  flex-shrink: 0;
+  stroke: currentColor;
+  stroke-width: 1.75;
+  fill: none;
+  vertical-align: -3px;
+}
+.icon-row { display: flex; align-items: center; gap: 0.5em; }
+/* Usage: <span class="icon-row"><svg class="icon">...</svg> +91 99094 76733</span> */
+
+/* ---------- 6. Breadcrumbs — reuses eyebrow/mono styling, no new type ---------- */
+.breadcrumbs {
+  font-family: var(--font-mono);
+  font-size: var(--label-md);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  display: flex; align-items: center; gap: 0.5em;
+  margin-bottom: var(--space-2);
+}
+.breadcrumbs a { color: var(--ink-soft); border-bottom: 1px solid transparent; }
+.breadcrumbs a:hover { color: var(--ink); border-bottom-color: var(--brass); }
+.breadcrumbs .sep { color: var(--line); }
+.breadcrumbs .current { color: var(--ink); }
+
+/* ---------- 7. Language switcher — globe menu ---------- */
+.lang-switch { position: relative; }
+.lang-switch__trigger {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  border: 1px solid var(--line); border-radius: var(--radius);
+  background: transparent; color: var(--ink-soft); cursor: pointer;
+  padding: 0.55em 0.75em; font: inherit;
+}
+.lang-switch__trigger:hover, .lang-switch.is-open .lang-switch__trigger { color: var(--ink); background: var(--line-soft); }
+.lang-switch__icon { width: 1.05em; height: 1.05em; stroke: currentColor; stroke-width: 1.7; fill: none; }
+.lang-switch__current { font-family: var(--font-mono); font-size: var(--label-md); letter-spacing: 0.04em; }
+.lang-switch__chevron { font-size: 0.9em; line-height: 1; }
+.lang-switch__menu {
+  position: absolute; right: 0; top: calc(100% + 0.5rem); z-index: 100;
+  min-width: 11rem; padding: 0.35rem;
+  background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
+  box-shadow: 0 10px 28px rgba(0,0,0,.10); display: none;
+}
+.lang-switch.is-open .lang-switch__menu { display: block; }
+.lang-switch__menu a {
+  display: block; padding: 0.65rem 0.75rem; border-radius: calc(var(--radius) - 2px);
+  color: var(--ink-soft); font-size: 0.9rem;
+}
+.lang-switch__menu a:hover, .lang-switch__menu a[aria-current="true"] { background: var(--line-soft); color: var(--ink); }
+.lang-switch__menu a[aria-current="true"]::after { content: "✓"; float: right; }
+@media (max-width: 760px) {
+  .lang-switch__current { display: none; }
+  .lang-switch__trigger { padding: 0.55em 0.65em; }
+  .lang-switch__menu { right: 0; min-width: 12rem; }
+}
+
+/* ============================================================
+   CATEGORY-TINTED PORTFOLIO — subtle, desaturated per-category
+   backgrounds instead of flat white. Same restraint rule as the
+   rest of the system: no bright/saturated colors, just enough
+   hue separation to read as three distinct categories at a glance.
+   Tokens (--tint-feed / --tint-minerals / --tint-agri / --accent-agri)
+   live in the single :root block at the top of this file.
+   ============================================================ */
+.cat-card--feed { background: var(--tint-feed); }
+.cat-card--minerals { background: var(--tint-minerals); }
+.cat-card--agri { background: var(--tint-agri); }
+
+.cat-card--feed .num { color: var(--brass-dark); }
+.cat-card--minerals .num { color: var(--steel); }
+.cat-card--agri .num { color: var(--accent-agri); }
+
+/* Hover keeps the tint, just adds the same lift/shadow as before — no color shift on interaction */
+.cat-card--feed:hover, .cat-card--minerals:hover, .cat-card--agri:hover { border-color: currentColor; }
+
+/* ---------- Category cards — photo background variant ---------- */
+.cat-card--photo { position: relative; background-size: cover; background-position: center; color: var(--paper); }
+.cat-card--photo::before {
+  content: ""; position: absolute; inset: 0; z-index: 0;
+  background: linear-gradient(180deg, rgba(20,32,43,0.30) 0%, rgba(20,32,43,0.50) 45%, rgba(20,32,43,0.90) 100%);
+}
+.cat-card--photo > * { position: relative; z-index: 1; }
+.cat-card--photo .num { color: var(--paper); opacity: 0.85; }
+.cat-card--photo h3 { color: var(--paper); }
+.cat-card--photo li { border-top-color: rgba(251,249,245,0.25); }
+.cat-card--photo a { color: var(--paper); }
+.cat-card--photo a:hover { color: var(--brass); }
+.cat-card--photo.cat-card--feed {
+  background-image: url("../images/catalog/catalog-feed.jpg");
+  background-image: image-set(url("../images/catalog/catalog-feed.webp") type("image/webp"), url("../images/catalog/catalog-feed.jpg") type("image/jpeg"));
+}
+.cat-card--photo.cat-card--minerals {
+  background-image: url("../images/catalog/catalog-minerals.jpg");
+  background-image: image-set(url("../images/catalog/catalog-minerals.webp") type("image/webp"), url("../images/catalog/catalog-minerals.jpg") type("image/jpeg"));
+}
+.cat-card--photo.cat-card--agri {
+  background-image: url("../images/catalog/catalog-agro.jpg");
+  background-image: image-set(url("../images/catalog/catalog-agro.webp") type("image/webp"), url("../images/catalog/catalog-agro.jpg") type("image/jpeg"));
+}
+
+
+/* Product table rows are fully clickable. */
+.spec-table tbody tr {
+  cursor: pointer;
+}
+.spec-table tbody tr:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: -2px;
+}
+
+/* Homepage visual refinement */
+.home-page .hero::after {
+  opacity: .72;
+}
+
+@media (max-width: 720px) {
+  .home-page .hero::after {
+    opacity: .68;
+  }
+}
+
+/* ============================================================
+   PROCESS FLOW — "How We Work" as a connected sequence, not a
+   grid of four equal boxes. A visible line + arrow between steps
+   so the sequence reads in the same glance the labels used to take.
+   ============================================================ */
+.flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; counter-reset: flow-step; }
+.flow__step { position: relative; border-top: 2px solid var(--ink); padding: var(--space-2) var(--space-3) 0 0; }
+.flow__step::before {
+  counter-increment: flow-step;
+  content: counter(flow-step);
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 28px; height: 28px; margin-bottom: var(--space-2);
+  border: 1px solid var(--ink); border-radius: 50%;
+  font-family: var(--font-mono); font-size: 0.8rem; color: var(--ink);
+  background: var(--paper);
+}
+.flow__step:not(:last-child)::after {
+  content: "";
+  position: absolute; top: 13px; left: calc(28px + 10px); right: -14px;
+  height: 0; border-top: 2px dashed var(--line-strong);
+}
+.flow__step:not(:last-child) .flow__arrow {
+  position: absolute; top: 4px; right: -10px;
+  width: 18px; height: 18px; color: var(--brass-dark);
+}
+.flow__label { font-family: var(--font-mono); font-size: var(--label-md); text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-soft); margin-bottom: 4px; }
+.flow__value { font-family: var(--font-display); font-size: var(--step-2); margin-bottom: 6px; }
+.flow__sub { font-size: 0.9rem; color: var(--ink-soft); }
+@media (max-width: 1024px) {
+  .flow { grid-template-columns: repeat(2, 1fr); gap: var(--space-3); }
+  .flow__step:nth-child(2)::after, .flow__step:nth-child(2) .flow__arrow { display: none; }
+  .flow__step:nth-child(4)::after, .flow__step:nth-child(4) .flow__arrow { display: none; }
+}
+@media (max-width: 620px) {
+  .flow { grid-template-columns: 1fr; }
+  .flow__step { padding-right: 0; }
+  .flow__step::after, .flow__step .flow__arrow { display: none; }
+  .flow__step:not(:last-child) { padding-bottom: var(--space-3); margin-bottom: var(--space-2); border-bottom: 1px dashed var(--line); }
+}
+
+/* ============================================================
+   ADD-TO-INQUIRY — lets a buyer tick several products (agri +
+   minerals in the same container is normal for this business)
+   and carry the whole list to one contact form instead of
+   submitting separate inquiries or retyping a free-text list.
+   ============================================================ */
+.inquiry-add {
+  display: inline-flex; align-items: center; gap: 0.5em;
+  padding: 0.75em 1.2em; font-family: var(--font-body); font-size: 0.9rem; font-weight: 600;
+  border: 1px solid var(--line-strong); border-radius: var(--radius);
+  background: var(--paper-raised); color: var(--ink); cursor: pointer; min-height: 44px;
+}
+.inquiry-add:hover { border-color: var(--ink); }
+.inquiry-add[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.inquiry-add .icon { width: 16px; height: 16px; }
+
+.inquiry-tray {
+  position: fixed; right: var(--space-3); bottom: var(--space-3); z-index: 80;
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  background: var(--ink); color: var(--paper);
+  border-radius: var(--radius); padding: 0.9em 1em;
+  box-shadow: 0 10px 28px rgba(0,0,0,.22);
+  font-family: var(--font-body); font-size: 0.88rem;
+  opacity: 0; transform: translateY(8px); pointer-events: none;
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+.inquiry-tray.is-visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+.inquiry-tray__count { font-family: var(--font-mono); background: var(--brass); color: var(--ink); border-radius: 999px; width: 22px; height: 22px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.75rem; }
+.inquiry-tray a.btn { min-height: 36px; padding: 0.5em 1em; font-size: 0.85rem; }
+@media (max-width: 760px) { .inquiry-tray { left: var(--space-2); right: var(--space-2); bottom: 76px; justify-content: space-between; } }
+
+.inquiry-list { font-size: var(--note); color: var(--ink-soft); margin-top: 4px; }
+.inquiry-list__remove { color: var(--error); border-bottom: 1px solid transparent; cursor: pointer; background: none; border-top: none; border-left: none; border-right: none; font: inherit; padding: 0; }
+.inquiry-list__remove:hover { border-bottom-color: var(--error); }
+
+/* ---------- Payment & quality note strip (Company page) ---------- */
+.trust-note { border-left: 2px solid var(--brass); padding-left: var(--space-3); margin-top: var(--space-3); }
+.trust-note + .trust-note { margin-top: var(--space-3); }
+.trust-note h3 { font-size: var(--step-1); margin-bottom: 6px; }
+.trust-note p { color: var(--ink-soft); max-width: 68ch; }
+
+/* Long-form legal content (Privacy Policy, Terms of Use): comfortable reading
+   measure, visible list markers, clear rhythm between sections. */
+.legal-copy { max-width: 72ch; }
+.legal-copy h2 { font-size: var(--step-1); margin-top: var(--space-4); margin-bottom: var(--space-2); }
+.legal-copy h2:first-child { margin-top: 0; }
+.legal-copy p { color: var(--ink-soft); margin-bottom: var(--space-2); line-height: 1.65; }
+.legal-copy ul { list-style: disc; padding-left: 1.4em; margin-bottom: var(--space-2); }
+.legal-copy li { color: var(--ink-soft); line-height: 1.65; margin-bottom: 8px; }
+.legal-copy a { color: var(--ink); }
+.footer-legal-links a { color: inherit; }
+.footer-legal-links a:not(:hover) { text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
