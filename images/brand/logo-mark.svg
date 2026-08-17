@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- VP Tradelink logo mark — standalone vector version of the interlocking
+       monoline "VP" monogram already used in the favicon/apple-touch-icon,
+       extracted here on a transparent background so the same mark can be
+       reused anywhere the wordmark-only header currently can't go: a
+       container seal, a business card, a WhatsApp/WeChat profile photo, a
+       PDF cover badge, or print at any size. -->
+  <g fill="none" stroke="#8A6D3B" stroke-width="4.4" stroke-linecap="round" stroke-linejoin="round">
+    <!-- V: left diagonal down to the point -->
+    <path d="M14 18 L31.5 54" />
+    <!-- V: right diagonal / P stem, sharing the same bottom point -->
+    <path d="M31.5 54 L44 28" />
+    <!-- P: stem continuing up from where the V's right leg ends -->
+    <path d="M44 28 L44 14" />
+    <!-- P: bowl -->
+    <path d="M44 14 L50 14 C54.5 14 57.5 17 57.5 21 C57.5 25 54.5 28 50 28 L44 28" />
+  </g>
+</svg>
