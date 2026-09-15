@@ -1,0 +1,61 @@
+# Redirects from the currently-live PDF filenames (which use the incorrect
+# "VP-Tradelink" brand spelling) to the corrected "V-P-Tradelink" filenames
+# shipped in this release. Without these, anyone who bookmarked, shared, or
+# had these PDFs indexed by Google will hit a 404 after this deploy goes live.
+#
+# ASSUMPTION TO VERIFY BEFORE DEPLOYING: this assumes the live site's PDF folder
+# structure matches this project's (/downloads/, /downloads/vi/, /downloads/id/).
+# Confirm the live paths (e.g. via your hosting dashboard or view-source on the
+# live site) before relying on these — I could only directly verify the English
+# homepage's live PDF links, not the vi/id ones.
+#
+# Remove this block once traffic to the old URLs drops to zero (check Netlify
+# Analytics / Google Search Console after a few months).
+
+# English
+/downloads/VP-Tradelink-Bentonite-TDS.pdf            /downloads/V-P-Tradelink-Bentonite-TDS.pdf                 301
+/downloads/VP-Tradelink-China-Clay-TDS.pdf           /downloads/V-P-Tradelink-China-Clay-TDS.pdf                301
+/downloads/VP-Tradelink-Company-Profile.pdf          /downloads/V-P-Tradelink-Company-Profile.pdf               301
+/downloads/VP-Tradelink-Cumin-Seeds-TDS.pdf          /downloads/V-P-Tradelink-Cumin-Seeds-TDS.pdf               301
+/downloads/VP-Tradelink-Groundnuts-TDS.pdf           /downloads/V-P-Tradelink-Groundnuts-TDS.pdf                301
+/downloads/VP-Tradelink-Guar-Churi-TDS.pdf           /downloads/V-P-Tradelink-Guar-Churi-TDS.pdf                301
+/downloads/VP-Tradelink-Potash-Feldspar-TDS.pdf      /downloads/V-P-Tradelink-Potash-Feldspar-TDS.pdf           301
+/downloads/VP-Tradelink-Product-Catalogue.pdf        /downloads/V-P-Tradelink-Product-Catalogue.pdf             301
+/downloads/VP-Tradelink-Psyllium-Husk-TDS.pdf        /downloads/V-P-Tradelink-Psyllium-Husk-TDS.pdf             301
+/downloads/VP-Tradelink-Quartz-TDS.pdf               /downloads/V-P-Tradelink-Quartz-TDS.pdf                    301
+/downloads/VP-Tradelink-Rapeseed-Meal-TDS.pdf        /downloads/V-P-Tradelink-Rapeseed-Meal-TDS.pdf             301
+/downloads/VP-Tradelink-Sesame-Seeds-TDS.pdf         /downloads/V-P-Tradelink-Sesame-Seeds-TDS.pdf              301
+/downloads/VP-Tradelink-Soda-Feldspar-TDS.pdf        /downloads/V-P-Tradelink-Soda-Feldspar-TDS.pdf             301
+/downloads/VP-Tradelink-Soybean-Meal-TDS.pdf         /downloads/V-P-Tradelink-Soybean-Meal-TDS.pdf              301
+
+# Vietnamese
+/downloads/vi/VP-Tradelink-Bentonite-TDS.pdf         /downloads/vi/V-P-Tradelink-Bentonite-TDS.pdf              301
+/downloads/vi/VP-Tradelink-China-Clay-TDS.pdf        /downloads/vi/V-P-Tradelink-China-Clay-TDS.pdf             301
+/downloads/vi/VP-Tradelink-Company-Profile.pdf       /downloads/vi/V-P-Tradelink-Company-Profile.pdf            301
+/downloads/vi/VP-Tradelink-Cumin-Seeds-TDS.pdf       /downloads/vi/V-P-Tradelink-Cumin-Seeds-TDS.pdf            301
+/downloads/vi/VP-Tradelink-Groundnuts-TDS.pdf        /downloads/vi/V-P-Tradelink-Groundnuts-TDS.pdf             301
+/downloads/vi/VP-Tradelink-Guar-Churi-TDS.pdf        /downloads/vi/V-P-Tradelink-Guar-Churi-TDS.pdf             301
+/downloads/vi/VP-Tradelink-Potash-Feldspar-TDS.pdf   /downloads/vi/V-P-Tradelink-Potash-Feldspar-TDS.pdf        301
+/downloads/vi/VP-Tradelink-Product-Catalogue.pdf     /downloads/vi/V-P-Tradelink-Product-Catalogue.pdf          301
+/downloads/vi/VP-Tradelink-Psyllium-Husk-TDS.pdf     /downloads/vi/V-P-Tradelink-Psyllium-Husk-TDS.pdf          301
+/downloads/vi/VP-Tradelink-Quartz-TDS.pdf            /downloads/vi/V-P-Tradelink-Quartz-TDS.pdf                 301
+/downloads/vi/VP-Tradelink-Rapeseed-Meal-TDS.pdf     /downloads/vi/V-P-Tradelink-Rapeseed-Meal-TDS.pdf          301
+/downloads/vi/VP-Tradelink-Sesame-Seeds-TDS.pdf      /downloads/vi/V-P-Tradelink-Sesame-Seeds-TDS.pdf           301
+/downloads/vi/VP-Tradelink-Soda-Feldspar-TDS.pdf     /downloads/vi/V-P-Tradelink-Soda-Feldspar-TDS.pdf          301
+/downloads/vi/VP-Tradelink-Soybean-Meal-TDS.pdf      /downloads/vi/V-P-Tradelink-Soybean-Meal-TDS.pdf           301
+
+# Indonesian
+/downloads/id/VP-Tradelink-Bentonite-TDS.pdf         /downloads/id/V-P-Tradelink-Bentonite-TDS.pdf              301
+/downloads/id/VP-Tradelink-China-Clay-TDS.pdf        /downloads/id/V-P-Tradelink-China-Clay-TDS.pdf             301
+/downloads/id/VP-Tradelink-Company-Profile.pdf       /downloads/id/V-P-Tradelink-Company-Profile.pdf            301
+/downloads/id/VP-Tradelink-Cumin-Seeds-TDS.pdf       /downloads/id/V-P-Tradelink-Cumin-Seeds-TDS.pdf            301
+/downloads/id/VP-Tradelink-Groundnuts-TDS.pdf        /downloads/id/V-P-Tradelink-Groundnuts-TDS.pdf             301
+/downloads/id/VP-Tradelink-Guar-Churi-TDS.pdf        /downloads/id/V-P-Tradelink-Guar-Churi-TDS.pdf             301
+/downloads/id/VP-Tradelink-Potash-Feldspar-TDS.pdf   /downloads/id/V-P-Tradelink-Potash-Feldspar-TDS.pdf        301
+/downloads/id/VP-Tradelink-Product-Catalogue.pdf     /downloads/id/V-P-Tradelink-Product-Catalogue.pdf          301
+/downloads/id/VP-Tradelink-Psyllium-Husk-TDS.pdf     /downloads/id/V-P-Tradelink-Psyllium-Husk-TDS.pdf          301
+/downloads/id/VP-Tradelink-Quartz-TDS.pdf            /downloads/id/V-P-Tradelink-Quartz-TDS.pdf                 301
+/downloads/id/VP-Tradelink-Rapeseed-Meal-TDS.pdf     /downloads/id/V-P-Tradelink-Rapeseed-Meal-TDS.pdf          301
+/downloads/id/VP-Tradelink-Sesame-Seeds-TDS.pdf      /downloads/id/V-P-Tradelink-Sesame-Seeds-TDS.pdf           301
+/downloads/id/VP-Tradelink-Soda-Feldspar-TDS.pdf     /downloads/id/V-P-Tradelink-Soda-Feldspar-TDS.pdf          301
+/downloads/id/VP-Tradelink-Soybean-Meal-TDS.pdf      /downloads/id/V-P-Tradelink-Soybean-Meal-TDS.pdf           301
